@@ -6,7 +6,6 @@
 def order_car(customerId, carId):
     car_stat = ['ok', 'rented', 'damaged']
     try:
-        
         theCustomer = Customer.objects.get(pk=customerId)
         theCar = Car.objects.get(pk=carId)
     except Customer.DoesNotExist and Car.DoesNotExist:
@@ -20,6 +19,6 @@ def order_car(customerId, carId):
         elif theCar.status == 'rented':
             theCar.status = "available"
         else:
-            return "car not rented"
+            return "damaged"
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
