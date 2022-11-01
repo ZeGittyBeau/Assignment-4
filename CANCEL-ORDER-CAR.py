@@ -7,14 +7,12 @@ def order_car(request, customerId, carId):
     except Customer.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = CustomerSerializer(theCustomer, data=request.data)
-    if carId.status = "available":
-        print ("car is available for booking")
+    if carId.status = "booked":
+        print ("order found")
         if serializer.is_valid():
-            carId.status = "booked"
+            carId.status = "available"
             serializer.save()
         else:
             Response(status=status.HTTP_400_BAD_REQUEST)
     else:
-        return "car is unavailable"
-        #carSerializer = CarSerializer(theCar, data=request.data)
-        #det er enten det eller bar if setning men aner ikke
+        return "car is available"
